@@ -1,0 +1,3 @@
+# Training Trigger File
+# এটি ট্রেনিং শুরু করার জন্য
+echo "Training triggered at $(date)" >> training.log
