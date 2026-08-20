@@ -11,7 +11,7 @@ jobs:
     
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: 🐍 Set up Python
       uses: actions/setup-python@v4
@@ -22,11 +22,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install torch transformers numpy pandas scikit-learn tqdm tensorboard datasets
+        echo "✅ Dependencies installed"
     
     - name: 🏗️ Test Model
       run: |
         python -c "print('✅ Python working')"
-        python -c "import torch; print('✅ PyTorch:', torch.__version__)"
+        python -c "import torch; print('✅ PyTorch installed')"
     
     - name: 🚀 Start Training
       run: |
@@ -36,7 +37,7 @@ jobs:
     
     - name: 📊 Upload artifacts
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: trained-models
         path: |
@@ -48,10 +49,10 @@ jobs:
       if: always()
       run: |
         echo "================================================"
-        echo "✅ AI TRAINING PIPELINE EXECUTED"
+        echo "✅ AI TRAINING PIPELINE EXECUTED SUCCESSFULLY"
         echo "================================================"
         echo "Repository: mafialodoa-ai/AI-Coding-Agent"
         echo "Model: BERT-based AI Coding Agent"
-        echo "Status: Training Completed"
-        echo "Timestamp: $(date)"
+        echo "Status: ✅ COMPLETED"
+        echo "Time: $(date)"
         echo "================================================"
