@@ -1,0 +1,40 @@
+name: AI Coding Agent - Lightweight Training
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 📦 Install Dependencies
+      run: |
+        pip install torch numpy -q
+        echo "✅ Dependencies installed"
+    
+    - name: 🚀 Train Model
+      run: python train_lightweight.py
+    
+    - name: 📊 Upload Model
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: trained-model
+        path: models/
+        retention-days: 30
+    
+    - name: ✅ Training Complete
+      run: |
+        echo "✨ AI Coding Agent Model Training Completed!"
+        echo "📁 Models available in artifacts"
